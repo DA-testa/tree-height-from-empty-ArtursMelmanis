@@ -24,23 +24,20 @@ def main():
         if input_variant == "I":
             n = input()
             parents = list(map(int, input().split()))
+            print(compute_height(n, parents))
             break
         if input_variant == "F":
-            file_var = input()
+            file_var = "test/" + input()
             if "a" in file_var:
-                return 1
+                return
             try:
-                with open("./test/" + file_var) as file:
+                with open(file_var) as file:
                     n = int(file.readline())
                     parents = list(map(int, file.readline().split()))
+                    print(compute_height(n, parents))
                     break
             except FileNotFoundError:
-                return 1
-        else:
-            print("Nepareizi ievadīts formats")
-    max_height = compute_height(n,parents)
-    print(max_height)
-    return 0
+                return
 
 # In Python, the default limit on recursion depth is rather low,
 # so raise it here for this problem. Note that to take advantage
