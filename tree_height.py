@@ -22,15 +22,15 @@ def main():
     while True:
         input_variant = input()
         if input_variant == "I":
-            n = int(input())
+            n = input()
             parents = list(map(int, input().split()))
             break
         if input_variant == "F":
-            file_var = input("text/")
+            file_var = input()
             if "a" in file_var:
                 return 1
             try:
-                with open(file_var) as file:
+                with open("./test/" + file_var, input_variant = 'r') as file:
                     n = int(file.readline())
                     parents = list(map(int, file.readline().split()))
                     break
@@ -48,5 +48,4 @@ def main():
 sys.setrecursionlimit(10**7)  # max depth of recursion
 threading.stack_size(2**27)   # new thread will get stack of such size
 threading.Thread(target=main).start()
-main()
 # print(numpy.array([1,2,3]))
