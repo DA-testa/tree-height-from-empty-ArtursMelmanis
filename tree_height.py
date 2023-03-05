@@ -24,12 +24,12 @@ def main():
             input_variant = input()
         except EOFError:
             return
-        if input_variant == "I":
+        if "I" in input_variant:
             n = input()
             parents = list(map(int, input().split()))
             print(compute_height(n, parents))
             break
-        if input_variant == "F":
+        if "F" in input_variant:
             file_var = "test/" + input()
             if "a" in file_var:
                 return
