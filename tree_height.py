@@ -2,19 +2,17 @@
 
 import sys
 import threading
-import numpy
 
 
 def compute_height(n, parents):
-    root = parents.index(-1)
     max_height = 0
-    stack = [(root, 1)]
     
-    while stack:
-        node, level = stack.pop()
+    for x in range (n):
+        height = 0
+        while x != 1:
+            level += 1
+            x = parents[x]
         max_height = max(max_height, level)
-        children = [i for i, p in enumerate(parents) if p == node]
-        stack.extend([(c, level+1) for c in children])
     return max_height
 
 
