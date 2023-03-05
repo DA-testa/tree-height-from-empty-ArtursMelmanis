@@ -5,16 +5,20 @@ import threading
 
 
 def compute_height(n, parents):
-    max_height = 0
+    max_height = {}
     
-    for x in range(n):
-        level = 0
-        while x != -1:
-            level += 1
-            x = parents[x]
-        max_height = max(max_height, level)
-    return max_height
-
+    def get_height(node):
+        if node in max_height:
+            return max_height[node]
+        if parents[node] == -1:
+            max_height[node] = 1
+            return 1
+        
+        height = get_height(parents[node]) + 1
+        max_height[node] = height
+        return height
+    
+    return max(get_height(node) for node in range(n))
 
 def main():
     while True:
@@ -23,7 +27,7 @@ def main():
         except EOFError:
             return
         if "I" in input_variant:
-            n = input()
+            n = int(input())
             parents = list(map(int, input().split()))
             print(compute_height(n, parents))
             break
