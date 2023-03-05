@@ -9,7 +9,7 @@ def compute_height(n, parents):
     
     for x in range(n):
         level = 0
-        while x != 1:
+        while x != -1:
             level += 1
             x = parents[x]
         max_height = max(max_height, level)
