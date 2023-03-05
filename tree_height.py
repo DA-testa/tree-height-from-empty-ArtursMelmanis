@@ -6,22 +6,41 @@ import numpy
 
 
 def compute_height(n, parents):
-    # Write this function
+    root = parents.index(-1)
     max_height = 0
-    # Your code here
+    stack = [(root, 1)]
+    
+    while stack:
+        node, level = stack.pop()
+        max_height = max(max_height, level)
+        children = [i for i, p in enumerate(parents) if p == node]
+        stack.extend([(c, level+1) for c in children])
     return max_height
 
 
 def main():
-    # implement input form keyboard and from files
-    
-    # let user input file name to use, don't allow file names with letter a
-    # account for github input inprecision
-    
-    # input number of elements
-    # input values in one variable, separate with space, split these values in an array
-    # call the function and output it's result
-    pass
+    while True:
+        input_variant = input()
+        if input_variant == "I":
+            n = int(input())
+            parents = list(map(int, input().split()))
+            break
+        if input_variant == "F":
+            file_var = input("text/")
+            if "a" in file_var:
+                return 1
+            try:
+                with open(file_var) as file:
+                    n = int(file.readline())
+                    parents = list(map(int, file.readline().split()))
+                    break
+            except FileNotFoundError:
+                return 1
+        else:
+            print("Nepareizi ievadīts formats")
+    max_height = compute_height(n,parents)
+    print(max_height)
+    return 0
 
 # In Python, the default limit on recursion depth is rather low,
 # so raise it here for this problem. Note that to take advantage
