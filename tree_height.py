@@ -20,7 +20,10 @@ def compute_height(n, parents):
 
 def main():
     while True:
-        input_variant = input()
+        try:
+            input_variant = input()
+        except EOFError:
+            return
         if input_variant == "I":
             n = input()
             parents = list(map(int, input().split()))
