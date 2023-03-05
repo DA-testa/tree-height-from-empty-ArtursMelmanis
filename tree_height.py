@@ -30,7 +30,7 @@ def main():
             if "a" in file_var:
                 return 1
             try:
-                with open("./test/" + file_var, input_variant = 'r') as file:
+                with open("./test/" + file_var) as file:
                     n = int(file.readline())
                     parents = list(map(int, file.readline().split()))
                     break
